@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.106
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "parabolic_solver", "parabolic_solver\parabolic_solver.vfproj", "{AE37F7DB-9C04-4374-9D69-2A1A642396D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE37F7DB-9C04-4374-9D69-2A1A642396D8}.Debug|x86.ActiveCfg = Debug|Win32
+		{AE37F7DB-9C04-4374-9D69-2A1A642396D8}.Debug|x86.Build.0 = Debug|Win32
+		{AE37F7DB-9C04-4374-9D69-2A1A642396D8}.Release|x86.ActiveCfg = Release|Win32
+		{AE37F7DB-9C04-4374-9D69-2A1A642396D8}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {185AE2BF-856C-479A-93A6-A38312F7EEE7}
+	EndGlobalSection
+EndGlobal
