@@ -63,14 +63,14 @@ module input_functions
     real(mp), intent(in) :: x,t
     real(mp) :: dx
     dx = 1.0d-2
-    L = 0.5_mp*(p(x)+p(x+dx))*(u_ref(x+dx,t)-u_ref(x,t))/(dx*dx) - 0.5_mp*(p(x-dx)+p(x))*(u_ref(x,t)-u_ref(x-dx,t))/(dx*dx) + &
+    L = p(x+dx/2.0_mp)*(u_ref(x+dx,t)-u_ref(x,t))/(dx*dx) - p(x-dx/2.0_mp)*(u_ref(x,t)-u_ref(x-dx,t))/(dx*dx) + &
         & b(x,t)*(u_ref(x+dx,t)-u_ref(x-dx,t))/(2.0_mp*dx) + c(x,t)*u_ref(x,t)
     end function L
     
     real function Lh_x_u(x,t,h,uk_prev,uk,uk_next)
     real(mp), intent(in) :: x,t,h
     real(mp), intent(in) :: uk_prev,uk,uk_next
-    Lh_x_u = 0.5_mp*(p(x)+p(x+h))*(uk_next-uk)/(h*h) - 0.5_mp*(p(x-h)+p(x))*(uk-uk_prev)/(h*h) + &
+    Lh_x_u = p(x+h/2.0_mp)*(uk_next-uk)/(h*h) - p(x-h/2.0_mp)*(uk-uk_prev)/(h*h) + &
              &  b(x,t)*(uk_next-uk_prev)/(2.0_mp*h) + c(x,t)*uk
     end function Lh_x_u
     
@@ -83,9 +83,9 @@ module input_functions
     M = size(t)-1
     do k=0,M
         do i=1,N-1
-            A_values(i,k) = -sigma*(0.5_mp*(p(x(i)-h)+p(x(i)))/(h*h) + b(x(i),t(k))/(2.0_mp*h))
-            B_values(i,k) = sigma*(0.5_mp*(p(x(i)+h)+p(x(i)))/(h*h) + 0.5*(p(x(i)-h)+p(x(i)))/(h*h) - c(x(i),t(k))) + 1/tau
-            C_values(i,k) = sigma*(0.5_mp*(p(x(i)+h)+p(x(i)))/(h*h) + b(x(i),t(k))/(2.0_mp*h))
+            A_values(i,k) = -sigma*(p(x(i)-h/2.0_mp)/(h*h) + b(x(i),t(k))/(2.0_mp*h))
+            B_values(i,k) = sigma*(p(x(i)+h/2.0_mp)/(h*h) + p(x(i)-h/2.0_mp)/(h*h) - c(x(i),t(k))) + 1/tau
+            C_values(i,k) = sigma*(p(x(i)+h/2.0_mp)/(h*h) + b(x(i),t(k))/(2.0_mp*h))
         enddo
         A_values(0,k) = 0.0_mp
         A_values(N,k) = -(beta2(t(k))/h)
